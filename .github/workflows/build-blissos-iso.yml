@@ -33,6 +33,14 @@ jobs:
           lunzip syslinux syslinux-utils gettext genisoimage bc \
           xorriso xmlstarlet nasm repo zstd
 
+    - name: Install writable local repo binary
+      run: |
+        mkdir -p ~/.bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+        chmod +x ~/.bin/repo
+        export PATH=~/.bin:$PATH
+        repo --version
+
     - name: Setup Android repo
       run: |
         mkdir -p $BUILD_DIR
